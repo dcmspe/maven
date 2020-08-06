@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+   <pluginGroups>
+      <pluginGroup>com.bnpparibas.frmk.mojo.util</pluginGroup>
+      <pluginGroup>com.atlassian.maven.plugins</pluginGroup>
+      <pluginGroup>org.jenkins-ci.tools</pluginGroup>
+      <pluginGroup>com.googlecode.smartgwt-maven-plugin</pluginGroup>
+   </pluginGroups>
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <!--              PROXY SECTION             -->
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <proxies>
+      <proxy>
+         <id>b2ps_proxy</id>
+         <active>true</active>
+         <protocol>http</protocol>
+         <host>ncproxy</host>
+         <port>8080</port>
+         <nonProxyHosts> *.echonet|*.fr.net.intra|*.intra</nonProxyHosts>
+      </proxy>
+   </proxies>
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <!--              SERVER SECTION            -->
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <servers>
+      <server>
+         <id>bp2s-afs-releases</id>
+      </server>
+      <server>
+         <id>bp2s-afs-snapshots</id>
+      </server>
+   </servers>
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <!--              MIRROR SECTION            -->
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <mirrors>
+      <mirror>
+         <id>bp2s-public-releases</id>
+         <name>BP2S Nexus Public Mirror</name>
+         <url>http://nexus-bp2s.is.echonet/content/groups/bp2s-public-releases</url>
+         <mirrorOf>central</mirrorOf>
+      </mirror>
+      <mirror>
+         <id>bp2s-public-snapshots</id>
+         <name>BP2S Nexus Snapshot Public Mirror</name>
+         <url>http://nexus-bp2s.is.echonet/content/groups/bp2s-public-snapshots</url>
+         <mirrorOf>snapshot</mirrorOf>
+      </mirror>
+   </mirrors>
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <!--           REPOSITORIES SECTION         -->
+   <!-- ++++++++++++++++++++++++++++++++++++++  -->
+   <profiles>
+      <profile>
+         <id>bp2s</id>
+         <repositories>
+            <repository>
+               <id>bp2s-public-snapshots</id>
+               <name>Public BP2S Snapshot Nexus repository</name>
+               <url>http://nexus-bp2s.is.echonet/content/groups/bp2s-public-snapshots</url>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>true</enabled>
+               </snapshots>
+            </repository>
+            <!-- Repositories definition for Business line  -->
+            <repository>
+               <id>bp2s-afs-releases</id>
+               <name>BP2S AFS Repository</name>
+               <url>http://nexus-bp2s.is.echonet/content/repositories/bp2s-afs-releases/</url>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </repository>
+            <repository>
+               <id>bp2s-afs-snapshots</id>
+               <name>BP2S AFS Repository</name>
+               <url>http://nexus-bp2s.is.echonet/content/repositories/bp2s-afs-snapshots/</url>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>true</enabled>
+               </snapshots>
+            </repository>
+         </repositories>
+      </profile>
+   </profiles>
+   <activeProfiles>
+      <activeProfile>bp2s</activeProfile>
+   </activeProfiles>
+</settings>
